@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 // Template for login button on login and register screen
 class AuthElevatedButton extends StatelessWidget {
-  AuthElevatedButton({Key? key, required this.onPressed}) : super(key: key);
+  AuthElevatedButton({Key? key, required this.onPressed, required this.title})
+      : super(key: key);
   late VoidCallback onPressed;
+  late String title;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -11,10 +13,10 @@ class AuthElevatedButton extends StatelessWidget {
         backgroundColor: const Color(0xFF00B7E4),
       ),
       onPressed: onPressed,
-      child: const ListTile(
-        leading: Icon(Icons.align_vertical_bottom),
-        title: Text("Login"),
-        trailing: Icon(Icons.arrow_forward),
+      child: ListTile(
+        leading: const Icon(Icons.verified_user),
+        title: Text(title),
+        trailing: const Icon(Icons.arrow_forward),
       ),
     );
   }

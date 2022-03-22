@@ -46,12 +46,14 @@ class CategoriesScreen extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SelectedCategoryScreen(
-                                title: categoryList[index].label,
-                                loadList: [],
-                              )));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SelectedCategoryScreen(
+                        title: categoryList[index].label,
+                        loadList: categoryList[index].categoryItemsList,
+                      ),
+                    ),
+                  );
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),

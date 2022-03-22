@@ -4,6 +4,7 @@ import 'package:project_rhema/screens/categories_screen.dart';
 import 'package:project_rhema/screens/foundation_school_screen.dart';
 import 'package:project_rhema/screens/login_screen.dart';
 import 'package:project_rhema/screens/onboarding_screen.dart';
+import 'package:project_rhema/screens/signup_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +23,7 @@ class RhemaApp extends StatelessWidget {
         LoginPage.id: (context) => const LoginPage(),
         OnboardingScreen.id: (context) => const OnboardingScreen(),
         CategoriesScreen.id: (context) => const CategoriesScreen(),
+        SIgnUpPage.id: (context) => const SIgnUpPage(),
       },
     );
   }

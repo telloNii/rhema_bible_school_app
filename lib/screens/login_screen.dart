@@ -3,6 +3,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:project_rhema/constants/buttons.dart';
 import 'package:project_rhema/model/firebase_authentication.dart';
 import 'package:project_rhema/screens/categories_screen.dart';
+import 'package:project_rhema/screens/signup_screen.dart';
 
 import '../constants/text_fields.dart';
 
@@ -89,46 +90,53 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: AuthElevatedButton(onPressed: () async {
-                  print(_passwordTextController.text);
-                  print(_emailTextController.text);
-                  //Using a try - catch block to handle possible errors that may arise
-                  try {
-                    //Check to see if typed credentials are valid types before performing login
-                    if (_emailTextController.value.text.isNotEmpty &&
-                        _emailTextController.text.contains("@") &&
-                        _passwordTextController.text.isNotEmpty) {
-                      await FirebaseAuthentication(
-                        email: _emailTextController.text.trim(),
-                        password: _passwordTextController.text.trim(),
-                      ).signInUser().then(
-                            (value) =>
-                                Navigator.popAndPushNamed(context, CategoriesScreen.id),
-                          );
-                    }
-                  } catch (errorIdentifier) {
-                    setState(() {
-                      print(errorIdentifier);
-                      _passwordTextController.clear();
-                    });
-                  }
-                }),
+                child: AuthElevatedButton(
+                    title: "Login",
+                    onPressed: () async {
+                      print(_passwordTextController.text);
+                      print(_emailTextController.text);
+                      //Using a try - catch block to handle possible errors that may arise
+                      try {
+                        //Check to see if typed credentials are valid types before performing login
+                        if (_emailTextController.value.text.isNotEmpty &&
+                            _emailTextController.text.contains("@") &&
+                            _passwordTextController.text.isNotEmpty) {
+                          await FirebaseAuthentication(
+                            email: _emailTextController.text.trim(),
+                            password: _passwordTextController.text.trim(),
+                          ).signInUser().then(
+                                (value) => Navigator.popAndPushNamed(
+                                    context, CategoriesScreen.id),
+                              );
+                        }
+                      } catch (errorIdentifier) {
+                        setState(() {
+                          print(errorIdentifier);
+                          _passwordTextController.clear();
+                        });
+                      }
+                    }),
               ),
               const SizedBox(
                 height: 50,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("You don't have an account?"),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      "Register",
-                      style: TextStyle(color: Colors.lightBlueAccent),
+              GestureDetector(
+                onTap: () {
+                  Navigator.popAndPushNamed(context, SIgnUpPage.id);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text("You don't have an account?"),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        "Register",
+                        style: TextStyle(color: Colors.lightBlueAccent),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               )
             ],
           ),
